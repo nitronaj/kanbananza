@@ -1,31 +1,10 @@
 import {connect} from 'react-redux';
 import CreateList from '../components/CreateList';
+import { createList } from '../actions/list-actions';
 
 
-const defaultListData = {
-  title: '',
-  cards: []
-}
-
-const mapDispatchToProps = dispatch => {
-  return {
-    createList: listData => {
-      const listId = Date.now().toString();
-      const list = {
-        id: listId,
-        ...defaultListData,
-        ...listData,
-      }
-
-      dispatch({
-        type: 'LIST_CREATE',
-        payload: {
-          list,
-          listId
-        }
-      })
-    }
-  }
+const mapDispatchToProps = {
+  createList
 }
 
 

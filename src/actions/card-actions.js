@@ -1,7 +1,25 @@
-export const CARD_CREATE = 'CARD_CREATE';
+export const CREATE_CARD = 'CREATE_CARD';
 
+const defaultCardData = {
+  title: '',
+  description: '',
+  assignedTo: '',
+};
 
-export const createCardCreator = payload => ({
-  type: CARD_CREATE,
-  payload
-})
+export const createCard = (listId, cardData) => {
+  const cardId = Date.now().toString();
+  const card = {
+    id: cardId,
+    ...defaultCardData,
+    ...cardData,
+  };
+
+  return {
+    type: CREATE_CARD,
+    payload: {
+      card,
+      cardId,
+      listId,
+    },
+  };
+};
