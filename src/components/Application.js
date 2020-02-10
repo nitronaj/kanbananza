@@ -1,15 +1,15 @@
 import React from 'react';
 
 import Users from './Users';
-import CreateList from './CreateList';
 import { ListsContainer } from '../containers/ListsContainer';
+import { CreatListContainer } from '../containers/CreateListContainer';
 
 const Application = () => {
   return (
     <main className="Application">
       <Users />
       <section>
-        <CreateList />
+        <CreatListContainer />
         <ListsContainer />
       </section>
     </main>

@@ -1,8 +1,20 @@
 import { lists as defaultLists } from '../normalized-state';
+import { addIdToChildren, addEntity } from './_utilities';
 
 const listsReducer = (lists = defaultLists, action) => {
 	console.log(lists, action);
-	return lists;
+
+  if (action.type === 'CARD_CREATE') {
+    const { cardId, listId } = action.payload;
+    return addIdToChildren(lists, listId, 'cards', cardId);
+  }
+
+  if(action.type === 'LIST_CREATE') {
+    const {list, listId} = action.payload;
+    return addEntity(lists, list, listId);
+  }
+
+  return lists;
 };
 
 export { listsReducer };
