@@ -1,4 +1,5 @@
 export const CREATE_CARD = 'CREATE_CARD';
+export const REMOVE_CARD = 'REMOVE_CARD';
 
 const defaultCardData = {
   title: '',
@@ -18,6 +19,16 @@ export const createCard = (listId, cardData) => {
     type: CREATE_CARD,
     payload: {
       card,
+      cardId,
+      listId,
+    },
+  };
+};
+
+export const removeCard = (cardId, listId) => {
+  return {
+    type: REMOVE_CARD,
+    payload: {
       cardId,
       listId,
     },

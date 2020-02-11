@@ -6,7 +6,8 @@ import { CreateCardContainer } from '../containers/CreateCardContainer';
 const List = ({ list = {}, removeList }) => {
   return (
     <article className="List">
-      <h2>{list.title}</h2>
+			<button onClick={() => removeList(list.id)}>X</button>
+      <h2>{list.title} {list.cards.length > 0 && `(${list.cards.length})` }</h2>
       <CreateCardContainer listId={list.id} />
       <div>
         {list.cards.map(cardId => (

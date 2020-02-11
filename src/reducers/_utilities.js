@@ -2,6 +2,9 @@ import set from 'lodash/fp/set';
 import get from 'lodash/fp/get';
 import pipe from 'lodash/fp/pipe';
 
+
+const removeFromArray = (array, target) => array.filter(n => n !== target);
+
 /*
   {
     entities: { ...cards.entities, [cardId]: card },
@@ -35,6 +38,39 @@ export const addIdToChildren = (state, entityId, property, childId) => {
   return set(path, [...children, childId], state);
 };
 
+
+/* 	const map = new Map(Object.entries(cards.entities))
+
+	map.delete(cardId);
+	const entities = Object.fromEntries(map);
+
+
+	return {
+		...cards,
+		entities,
+		ids: cards.ids.filter(id => id !== cardId)
+	} */
+
+export const removeEntity = (state, entityId) => {
+	const map = new Map(Object.entries(state.entities));
+	map.delete(entityId);
+	const entities = Object.fromEntries(map);
+
+	console.log({
+		...state,
+		entities,
+		ids: removeFromArray(state.ids, entityId)
+	});
+
+
+	return {
+		...state,
+		entities,
+		ids: removeFromArray(state.ids, entityId)
+	}
+}
+
+
 /* const entities = { ...lists.entities };
 
     entities[listId] = {
@@ -57,17 +93,8 @@ export const addIdToChildren = (state, entityId, property, childId) => {
 		)({ ...lists });
  */
 
-export const moveChildToEntity = (state, entityId, property, childId, destinationEntityId) => {
+export const removeIdFromChildren = (state, entityId, property, childId) => {
   const path = ['entities', entityId, property];
   const children = get(path)(state);
-
-  return pipe(
-    set(
-      path,
-      children.filter(id => childId !== id),
-    ),
-    state => {
-      return addIdToChildren(state, destinationEntityId, property, childId);
-    },
-  )(state);
+  return set(path, removeFromArray(children, childId), state);
 };

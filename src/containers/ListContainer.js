@@ -5,8 +5,19 @@ import List from '../components/List';
 
 const mapStateToProps = (state, ownProps) => {
 	return {
-		list: state.lists.entities[ownProps.listId]
+		list: state.lists.entities[ownProps.listId],
 	}
 }
 
-export const ListContainer = connect(mapStateToProps)(List);
+const mapDispatchToProps = dispatch => {
+	return {
+		removeList: listId => dispatch({
+			type: 'REMOVE_LIST',
+			payload: {
+				listId
+			}
+		})
+	}
+}
+
+export const ListContainer = connect(mapStateToProps, mapDispatchToProps)(List);
