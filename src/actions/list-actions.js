@@ -1,4 +1,5 @@
 export const CREATE_LIST = 'CREATE_LIST';
+export const MOVE_CARD_TO_LIST = 'MOVE_CARD_TO_LIST';
 
 const defaultListData = {
   title: '',
@@ -21,3 +22,14 @@ export const createList = listData => {
     },
   };
 };
+
+export const moveCardToList = (cardId, listId, destinationListId) => {
+	return {
+		type: MOVE_CARD_TO_LIST,
+		payload:{
+			cardId,
+			listId,
+			destinationListId
+		}
+	}
+}
