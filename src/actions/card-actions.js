@@ -1,5 +1,5 @@
-export const CREATE_CARD = 'CREATE_CARD';
-export const REMOVE_CARD = 'REMOVE_CARD';
+export const CARD_CREATE = 'CARD_CREATE';
+export const CARD_DELETE = 'CARD_DELETE';
 
 const defaultCardData = {
   title: '',
@@ -16,7 +16,7 @@ export const createCard = (listId, cardData) => {
   };
 
   return {
-    type: CREATE_CARD,
+    type: CARD_CREATE,
     payload: {
       card,
       cardId,
@@ -27,7 +27,7 @@ export const createCard = (listId, cardData) => {
 
 export const removeCard = (cardId, listId) => {
   return {
-    type: REMOVE_CARD,
+    type: CARD_DELETE,
     payload: {
       cardId,
       listId,

@@ -1,6 +1,6 @@
-export const CREATE_LIST = 'CREATE_LIST';
+export const LIST_CREATE = 'LIST_CREATE';
 export const CARD_MOVE = 'CARD_MOVE';
-export const REMOVE_LIST = 'REMOVE_LIST';
+export const LIST_DELETE = 'LIST_DELETE';
 
 const defaultListData = {
   title: '',
@@ -16,7 +16,7 @@ export const createList = listData => {
   };
 
   return {
-    type: CREATE_LIST,
+    type: LIST_CREATE,
     payload: {
       list,
       listId,
@@ -37,7 +37,7 @@ export const moveCardToList = (cardId, originListId, destinationListId) => {
 
 export const removeList = listId => {
   return {
-    type: REMOVE_LIST,
+    type: LIST_DELETE,
     payload: {
       listId,
     },

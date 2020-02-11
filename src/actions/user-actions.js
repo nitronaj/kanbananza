@@ -1,4 +1,4 @@
-export const CREATE_USER = 'CREATE_USER';
+export const USER_CREATE = 'USER_CREATE';
 
 const defaultUserData = {
   name: '',
@@ -14,7 +14,7 @@ export const createUser = userData => {
   };
 
   return {
-    type: 'CREATE_USER',
+    type: USER_CREATE,
     payload: {
       userId,
       user,

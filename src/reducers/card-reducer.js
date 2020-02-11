@@ -1,18 +1,17 @@
 import { cards as defaultCards } from '../normalized-state';
 import { addEntity, removeEntity } from './_utilities';
-import { CREATE_CARD, REMOVE_CARD } from '../actions/card-actions';
+import { CARD_CREATE, CARD_DELETE } from '../actions/card-actions';
 
 const cardsReducer = (cards = defaultCards, action) => {
-  if (action.type ===  CREATE_CARD) {
+  if (action.type === CARD_CREATE) {
     const { card, cardId } = action.payload;
     return addEntity(cards, card, cardId);
-	}
+  }
 
-	if(action.type === REMOVE_CARD) {
-		const {cardId} = action.payload;
-		return removeEntity(cards, cardId)
-	}
-
+  if (action.type === CARD_DELETE) {
+    const { cardId } = action.payload;
+    return removeEntity(cards, cardId);
+  }
 
   return cards;
 };
