@@ -1,6 +1,7 @@
 import set from 'lodash/fp/set';
 import get from 'lodash/fp/get';
 import pipe from 'lodash/fp/pipe';
+import omit from 'lodash/fp/omit';
 
 
 const removeFromArray = (array, target) => array.filter(n => n !== target);
@@ -52,22 +53,19 @@ export const addIdToChildren = (state, entityId, property, childId) => {
 	} */
 
 export const removeEntity = (state, entityId) => {
-	const map = new Map(Object.entries(state.entities));
+	/* const map = new Map(Object.entries(state.entities));
 	map.delete(entityId);
 	const entities = Object.fromEntries(map);
-
-	console.log({
-		...state,
-		entities,
-		ids: removeFromArray(state.ids, entityId)
-	});
-
-
 	return {
 		...state,
 		entities,
-		ids: removeFromArray(state.ids, entityId)
-	}
+		ids: state.ids.filter(id => id !== entityId)
+	} */
+
+	return pipe(
+    omit(`entities.${entityId}`),
+    set('ids', removeFromArray(state.ids, entityId)),
+  )(state);
 }
 
 

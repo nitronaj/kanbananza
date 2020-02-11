@@ -1,23 +1,12 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import List from '../components/List';
-
-
+import { removeList } from '../actions/list-actions';
 
 const mapStateToProps = (state, ownProps) => {
-	return {
-		list: state.lists.entities[ownProps.listId],
-	}
-}
-
-const mapDispatchToProps = dispatch => {
-	return {
-		removeList: listId => dispatch({
-			type: 'REMOVE_LIST',
-			payload: {
-				listId
-			}
-		})
-	}
-}
+  return {
+    list: state.lists.entities[ownProps.listId],
+  };
+};
+const mapDispatchToProps = { removeList };
 
 export const ListContainer = connect(mapStateToProps, mapDispatchToProps)(List);
