@@ -4,8 +4,6 @@ import { CREATE_CARD } from '../actions/card-actions';
 import { CREATE_LIST } from '../actions/list-actions'
 
 const listsReducer = (lists = defaultLists, action) => {
-	console.log(lists, action);
-
   if (action.type === CREATE_CARD) {
     const { cardId, listId } = action.payload;
     return addIdToChildren(lists, listId, 'cards', cardId);
